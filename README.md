@@ -5,7 +5,7 @@
 To monitor your EKS, AWS Lambda, S3, RDS, and DynamoDB using Amazon CloudWatch, 
 the monthly cost depends on log ingestion, metrics, dashboards, and alarms. 
 
-Here's a tailored estimate for a production-grade setup like yours, Sivasankar:
+Here's a tailored estimate for a production-grade setup like yours:
     
 ### Estimated Monthly CloudWatch Cost Breakdown
 

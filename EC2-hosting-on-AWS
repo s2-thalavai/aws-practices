@@ -1,0 +1,29 @@
+## Public ALB → Private EC2 Setup Guide
+
+### Step 1: Deploy an Application Load Balancer (ALB) in a Public Subnet
+
+    - Create an **internet-facing ALB** in a **public subnet**.
+    - Configure a **listener**:
+      - HTTP on port `80`, or
+      - HTTPS on port `443` (requires SSL certificate).
+
+### Step 2: Register EC2 in Private Subnet as Target
+
+    - Create a **target group** and register your **EC2 instance**.
+    - Ensure your application:
+      - Listens on the correct port (e.g., `80`).
+      - Binds to `0.0.0.0` (not `localhost`) to accept external traffic.
+
+### Step 3: Security Group Configuration
+
+    - **ALB Security Group (SG)**:
+      - Allow **inbound traffic** from the internet on ports `80` and/or `443`.
+    - **EC2 Security Group (SG)**:
+      - Allow **inbound traffic** from the **ALB’s SG** on the application port (e.g., `80`).
+
+### Step 4: DNS Mapping
+
+    - Use **Route 53** or any DNS provider to map a custom domain.
+    - Add:
+      - An **A record** (if using an alias), or
+      - A **CNAME record** pointing to the **ALB’s DNS name**.
